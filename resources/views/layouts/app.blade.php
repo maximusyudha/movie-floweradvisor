@@ -82,7 +82,8 @@
                             </svg>
                         </button>
 
-                        <div class="flex items-center space-x-1">
+                        {{-- Desktop: EN/ID, welcome, logout --}}
+                        <div class="hidden sm:flex items-center space-x-1">
                             <a href="{{ route('lang.switch', 'en') }}"
                                class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'en' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
                                 EN
@@ -97,10 +98,10 @@
                             {{ __('nav.welcome') }}, <strong>{{ Session::get('user')['username'] }}</strong>
                         </span>
 
-                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                        <form action="{{ route('logout') }}" method="POST" class="hidden sm:inline">
                             @csrf
                             <button type="submit"
-                                    class="bg-indigo-700 hover:bg-indigo-800 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-medium transition whitespace-nowrap">
+                                    class="bg-indigo-700 hover:bg-indigo-800 px-2 lg:px-3 py-1 rounded text-xs lg:text-sm font-medium transition whitespace-nowrap">
                                 {{ __('nav.logout') }}
                             </button>
                         </form>
@@ -119,19 +120,28 @@
                        class="block px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 transition {{ request()->routeIs('favorites') ? 'bg-indigo-700' : '' }}">
                         {{ __('nav.favorites') }}
                     </a>
-                    <div class="flex items-center space-x-1 px-3 py-2">
-                        <a href="{{ route('lang.switch', 'en') }}"
-                           class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'en' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
-                            EN
-                        </a>
-                        <a href="{{ route('lang.switch', 'id') }}"
-                           class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'id' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
-                            ID
-                        </a>
+                    <div class="border-t border-indigo-500 my-1 pt-1">
+                        <div class="flex items-center space-x-1 px-3 py-2">
+                            <a href="{{ route('lang.switch', 'en') }}"
+                               class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'en' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
+                                EN
+                            </a>
+                            <a href="{{ route('lang.switch', 'id') }}"
+                               class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'id' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
+                                ID
+                            </a>
+                        </div>
+                        <span class="block px-3 py-1 text-sm text-indigo-200">
+                            {{ __('nav.welcome') }}, <strong>{{ Session::get('user')['username'] }}</strong>
+                        </span>
+                        <form action="{{ route('logout') }}" method="POST" class="px-3 py-1">
+                            @csrf
+                            <button type="submit"
+                                    class="w-full text-left bg-indigo-700 hover:bg-indigo-800 px-3 py-1.5 rounded text-sm font-medium transition">
+                                {{ __('nav.logout') }}
+                            </button>
+                        </form>
                     </div>
-                    <span class="block px-3 py-2 text-sm text-indigo-200">
-                        {{ __('nav.welcome') }}, <strong>{{ Session::get('user')['username'] }}</strong>
-                    </span>
                 </div>
             @endif
 
