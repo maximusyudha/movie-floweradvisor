@@ -82,7 +82,7 @@
                             </svg>
                         </button>
 
-                        <div class="hidden xs:flex items-center space-x-1">
+                        <div class="flex items-center space-x-1">
                             <a href="{{ route('lang.switch', 'en') }}"
                                class="px-2 py-1 rounded text-xs font-medium transition {{ app()->getLocale() == 'en' ? 'bg-white text-indigo-600' : 'bg-indigo-500 hover:bg-indigo-400' }}">
                                 EN

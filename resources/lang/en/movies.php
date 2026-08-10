@@ -14,4 +14,6 @@ return [
     'detail' => 'View Details',
     'search_first' => 'Start searching for your favorite movies!',
     'page_of' => 'Page :current of :total',
+    'popular' => 'Popular Movies',
+    'popular_desc' => 'Discover trending films',
 ];

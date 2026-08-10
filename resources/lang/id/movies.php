@@ -14,4 +14,6 @@ return [
     'detail' => 'Lihat Detail',
     'search_first' => 'Mulai cari film favorit Anda!',
     'page_of' => 'Halaman :current dari :total',
+    'popular' => 'Film Populer',
+    'popular_desc' => 'Temukan film yang sedang tren',
 ];

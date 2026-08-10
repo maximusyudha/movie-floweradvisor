@@ -8,10 +8,10 @@
 <div class="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
     <div>
         <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">
-            {{ $isDefault ? 'Popular Movies' : __('movies.title') }}
+            {{ $isDefault ? __('movies.popular') : __('movies.title') }}
         </h1>
         @if ($isDefault)
-            <p class="text-gray-500 text-xs sm:text-sm mt-1">Discover trending films</p>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">{{ __('movies.popular_desc') }}</p>
         @else
             <p class="text-gray-500 text-xs sm:text-sm mt-1">
                 <span class="font-semibold text-gray-800">{{ $totalResults }}</span>
