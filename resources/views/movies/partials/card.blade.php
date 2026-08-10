@@ -4,9 +4,9 @@
             @if ($movie['Poster'] && $movie['Poster'] !== 'N/A')
                 <img src="{{ $movie['Poster'] }}" alt="{{ $movie['Title'] }}"
                      loading="lazy"
-                     class="w-full h-64 object-cover rounded-t-xl group-hover:scale-105 transition duration-300">
+                     class="w-full h-44 xs:h-52 sm:h-64 object-cover rounded-t-xl group-hover:scale-105 transition duration-300">
             @else
-                <div class="w-full h-64 bg-gray-200 rounded-t-xl flex items-center justify-center text-5xl">🎬</div>
+                <div class="w-full h-44 xs:h-52 sm:h-64 bg-gray-200 rounded-t-xl flex items-center justify-center text-4xl xs:text-5xl">🎬</div>
             @endif
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition"></div>
             <div class="absolute bottom-2 right-2">

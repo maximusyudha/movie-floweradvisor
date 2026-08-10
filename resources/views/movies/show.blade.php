@@ -3,31 +3,31 @@
 
 @section('content')
 
-{{-- Back Button (extra top padding so it's not hidden behind fixed navbar) --}}
-<div class="mb-6 pt-4">
+{{-- Back Button --}}
+<div class="mb-4">
     <a href="{{ route('movies') }}"
-       class="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+       class="inline-flex items-center gap-1.5 sm:gap-2 text-indigo-600 hover:text-indigo-800 font-medium transition text-sm sm:text-base">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
         {{ __('detail.back') }}
     </a>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
     {{-- Poster Column --}}
     <div class="lg:col-span-1">
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden sticky top-6">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden lg:sticky lg:top-20">
             @if ($movie['Poster'] && $movie['Poster'] !== 'N/A')
                 <img src="{{ $movie['Poster'] }}" alt="{{ $movie['Title'] }}"
                      class="w-full object-cover" loading="lazy">
             @else
-                <div class="w-full h-96 bg-gray-200 flex items-center justify-center text-8xl">🎬</div>
+                <div class="w-full h-64 sm:h-80 lg:h-96 bg-gray-200 flex items-center justify-center text-6xl sm:text-8xl">🎬</div>
             @endif
 
             {{-- Favorite Action --}}
-            <div class="p-5 border-t border-gray-100">
+            <div class="p-4 sm:p-5 border-t border-gray-100">
                 <div id="favStatus">
                     @if ($isFavorite)
                         <button onclick="removeFavoriteDetail()"
@@ -51,11 +51,11 @@
     <div class="lg:col-span-2 space-y-6">
 
         {{-- Title & Rating --}}
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-            <div class="flex items-start justify-between gap-4 mb-4">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-1">{{ $movie['Title'] }}</h1>
-                    <p class="text-gray-500 flex items-center gap-3 text-sm">
+                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">{{ $movie['Title'] }}</h1>
+                    <p class="text-gray-500 flex flex-wrap items-center gap-1.5 sm:gap-3 text-xs sm:text-sm">
                         <span>{{ $movie['Year'] ?? 'N/A' }}</span>
                         <span>•</span>
                         <span class="capitalize">{{ $movie['Type'] ?? 'movie' }}</span>
@@ -64,8 +64,8 @@
                     </p>
                 </div>
                 @if (isset($movie['imdbRating']) && $movie['imdbRating'] !== 'N/A')
-                    <div class="flex-shrink-0 bg-yellow-50 border border-yellow-200 rounded-xl px-4 py-3 text-center">
-                        <div class="text-2xl font-bold text-yellow-600">{{ $movie['imdbRating'] }}</div>
+                    <div class="flex-shrink-0 bg-yellow-50 border border-yellow-200 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-center">
+                        <div class="text-xl sm:text-2xl font-bold text-yellow-600">{{ $movie['imdbRating'] }}</div>
                         <div class="text-xs text-yellow-500">{{ $movie['imdbVotes'] ?? '' }}</div>
                     </div>
                 @endif
@@ -85,16 +85,16 @@
 
         {{-- Plot --}}
         @if (!empty($movie['Plot']) && $movie['Plot'] !== 'N/A')
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+                <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
                     📖 {{ __('detail.plot') }}
                 </h2>
-                <p class="text-gray-600 leading-relaxed">{{ $movie['Plot'] }}</p>
+                <p class="text-gray-600 leading-relaxed text-sm sm:text-base">{{ $movie['Plot'] }}</p>
             </div>
         @endif
 
         {{-- Meta Info Grid --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
             @foreach ([
                 'director' => $movie['Director'] ?? null,
                 'writer' => $movie['Writer'] ?? null,
@@ -120,18 +120,18 @@
 
         {{-- Awards --}}
         @if (!empty($movie['Awards']) && $movie['Awards'] !== 'N/A')
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+                <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
                     🏆 {{ __('detail.awards') }}
                 </h2>
-                <p class="text-gray-600">{{ $movie['Awards'] }}</p>
+                <p class="text-gray-600 text-sm sm:text-base">{{ $movie['Awards'] }}</p>
             </div>
         @endif
 
         {{-- Ratings --}}
         @if (!empty($movie['Ratings']))
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6">
+                <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4 flex items-center gap-2">
                     ⭐ {{ __('detail.rating') }}
                 </h2>
                 <div class="space-y-3">

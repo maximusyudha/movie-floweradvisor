@@ -3,19 +3,19 @@
 @section('title', __('auth.login_title'))
 
 @section('content')
-<div class="min-h-[80vh] flex items-center justify-center">
-    <div class="w-full max-w-md">
+<div class="min-h-[80vh] flex items-center justify-center px-4">
+    <div class="w-full max-w-sm">
 
         {{-- Logo / Branding --}}
-        <div class="text-center mb-8">
-            <div class="text-6xl mb-3">🎬</div>
-            <h1 class="text-3xl font-bold text-gray-800">MovieApp</h1>
-            <p class="text-gray-500 mt-1">{{ __('auth.login_title') }}</p>
+        <div class="text-center mb-6 sm:mb-8">
+            <div class="text-5xl sm:text-6xl mb-3">🎬</div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">MovieApp</h1>
+            <p class="text-gray-500 mt-1 text-sm sm:text-base">{{ __('auth.login_title') }}</p>
         </div>
 
         {{-- Login Card --}}
-        <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            <form action="{{ route('login') }}" method="POST" class="space-y-5">
+        <div class="bg-white rounded-xl shadow-xl p-6 sm:p-8 border border-gray-100">
+            <form action="{{ route('login') }}" method="POST" class="space-y-4 sm:space-y-5">
                 @csrf
 
                 {{-- Username --}}
@@ -33,7 +33,7 @@
                         <input type="text" id="username" name="username" required
                                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg
                                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
-                                      transition outline-none"
+                                      transition outline-none text-sm sm:text-base"
                                placeholder="username" autofocus>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <input type="password" id="password" name="password" required
                                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg
                                       focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
-                                      transition outline-none"
+                                      transition outline-none text-sm sm:text-base"
                                placeholder="••••••••">
                     </div>
                 </div>
@@ -61,17 +61,11 @@
                 {{-- Submit --}}
                 <button type="submit"
                         class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold
-                               py-2.5 rounded-lg transition shadow-md hover:shadow-lg">
+                               py-2.5 rounded-lg transition shadow-md hover:shadow-lg text-sm sm:text-base">
                     {{ __('auth.login_btn') }}
                 </button>
             </form>
         </div>
-
-        {{-- Footer Note --}}
-        <!-- <p class="text-center text-gray-400 text-xs mt-6">
-            Demo credentials: <code class="bg-gray-200 px-1.5 py-0.5 rounded">aldmic</code> /
-            <code class="bg-gray-200 px-1.5 py-0.5 rounded">123abc123</code>
-        </p> -->
     </div>
 </div>
 @endsection

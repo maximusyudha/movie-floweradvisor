@@ -4,16 +4,16 @@
 
 @section('content')
 
-{{-- Page Header (extra top padding so it's not hidden behind fixed navbar) --}}
-<div class="mb-8 pt-4 flex items-end justify-between">
+{{-- Page Header --}}
+<div class="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
     <div>
-        <h1 class="text-3xl font-bold text-gray-800">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">
             {{ $isDefault ? 'Popular Movies' : __('movies.title') }}
         </h1>
         @if ($isDefault)
-            <p class="text-gray-500 text-sm mt-1">Discover trending films or use the search icon in the navbar above</p>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">Discover trending films</p>
         @else
-            <p class="text-gray-500 text-sm mt-1">
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">
                 <span class="font-semibold text-gray-800">{{ $totalResults }}</span>
                 {{ __('movies.results') }}
                 @if ($year) <span class="text-gray-400"> ({{ $year }})</span> @endif
@@ -21,23 +21,23 @@
         @endif
     </div>
     @if (!$isDefault && $totalResults > 0)
-        <p class="text-sm text-gray-400">
+        <p class="text-xs text-gray-400 sm:text-sm">
             {{ __('movies.page_of', ['current' => $page, 'total' => ceil($totalResults / 10)]) }}
         </p>
     @endif
 </div>
 
-{{-- Empty State: no results (handles both API error and zero matches) --}}
+{{-- Empty State: no results --}}
 @if (!$isDefault && empty($movies))
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
-        <div class="text-7xl mb-4">🎭</div>
-        <h3 class="text-2xl font-bold text-gray-700 mb-2">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 sm:p-12 text-center">
+        <div class="text-5xl sm:text-7xl mb-4">🎭</div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-700 mb-2">
             {{ !empty($error) ? $error : __('movies.no_results') }}
         </h3>
-        <p class="text-gray-400 mb-6">Try a different title or year</p>
+        <p class="text-gray-400 mb-6 text-sm sm:text-base">Try a different title or year</p>
         <a href="{{ route('movies') }}"
            class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white
-                  px-6 py-2.5 rounded-lg font-semibold transition shadow-md">
+                  px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold transition shadow-md text-sm sm:text-base">
             🔍 Browse Popular Movies
         </a>
     </div>
@@ -45,7 +45,7 @@
 
 {{-- Movie Grid --}}
 @if (!empty($movies))
-<div id="movieGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+<div id="movieGrid" class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
     @foreach ($movies as $movie)
         @include('movies.partials.card', ['movie' => $movie])
     @endforeach
@@ -143,8 +143,8 @@
 
     function buildCard(movie) {
         const poster = movie.Poster && movie.Poster !== 'N/A'
-            ? `<img src="${escapeHtml(movie.Poster)}" alt="${escapeHtml(movie.Title)}" loading="lazy" class="w-full h-64 object-cover">`
-            : `<div class="w-full h-64 bg-gray-200 flex items-center justify-center text-5xl">🎬</div>`;
+            ? `<img src="${escapeHtml(movie.Poster)}" alt="${escapeHtml(movie.Title)}" loading="lazy" class="w-full h-44 xs:h-52 sm:h-64 object-cover">`
+            : `<div class="w-full h-44 xs:h-52 sm:h-64 bg-gray-200 flex items-center justify-center text-4xl xs:text-5xl">🎬</div>`;
 
         const favBtn = movie.is_favorite
             ? `<button onclick="removeFavorite('${movie.imdbID}', this)"

@@ -4,26 +4,26 @@
 @section('content')
 
 {{-- Page Header --}}
-<div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-800">{{ __('favorites.title') }}</h1>
+<div class="mb-6">
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">{{ __('favorites.title') }}</h1>
 </div>
 
 {{-- Empty State --}}
 @if ($favorites->isEmpty())
-    <div class="text-center py-24">
-        <div class="text-8xl mb-5">💔</div>
-        <h3 class="text-2xl font-bold text-gray-600 mb-3">{{ __('favorites.empty') }}</h3>
-        <p class="text-gray-400 mb-8">{{ __('favorites.empty_desc') }}</p>
+    <div class="text-center py-16 sm:py-24">
+        <div class="text-6xl sm:text-8xl mb-5">💔</div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-600 mb-3">{{ __('favorites.empty') }}</h3>
+        <p class="text-gray-400 mb-6 sm:text-base">{{ __('favorites.empty_desc') }}</p>
         <a href="{{ route('movies') }}"
            class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white
-                  px-6 py-3 rounded-xl font-semibold transition shadow-md hover:shadow-lg">
+                  px-5 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition shadow-md text-sm sm:text-base">
             🔍 {{ __('nav.movies') }}
         </a>
     </div>
 @else
 
     {{-- Favorites Grid --}}
-    <div id="favGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+    <div id="favGrid" class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
         @foreach ($favorites as $fav)
             <div id="fav-card-{{ $fav->imdb_id }}"
                  class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition group">
@@ -32,9 +32,9 @@
                         @if ($fav->poster && $fav->poster !== 'N/A')
                             <img src="{{ $fav->poster }}" alt="{{ $fav->title }}"
                                  loading="lazy"
-                                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                                 class="w-full h-44 xs:h-52 sm:h-64 object-cover group-hover:scale-105 transition duration-300">
                         @else
-                            <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-5xl">🎬</div>
+                            <div class="w-full h-44 xs:h-52 sm:h-64 bg-gray-200 flex items-center justify-center text-4xl xs:text-5xl">🎬</div>
                         @endif
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition"></div>
                     </div>
